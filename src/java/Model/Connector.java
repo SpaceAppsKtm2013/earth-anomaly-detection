@@ -21,7 +21,7 @@ public class Connector {
     public Connector(){
     try{
     Class.forName("com.mysql.jdbc.Driver");
-    connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/retail_db","root","");
+    connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/stdata","root","");
     }
     catch(Exception ex)
     {
