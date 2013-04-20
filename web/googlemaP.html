@@ -14,14 +14,7 @@
     center: new google.maps.LatLng(41.878113, -87.629798),
     population: 2842518
   };
-  citymap['newyork'] = {
-    center: new google.maps.LatLng(40.714352, -74.005973),
-    population: 8143197
-  };
-  citymap['losangeles'] = {
-    center: new google.maps.LatLng(34.052234, -118.243684),
-    population: 3844829
-  }
+
   var cityCircle;
 
   function initialize() {
@@ -34,7 +27,7 @@
     var map = new google.maps.Map(document.getElementById("map_canvas"),
         mapOptions);
 
-    for (var city in citymap) {
+ 
       // Construct the circle for each value in citymap. We scale population by 20.
       var populationOptions = {
         strokeColor: "#FF0000",
@@ -43,11 +36,15 @@
         fillColor: "#FF0000",
         fillOpacity: 0.35,
         map: map,
-        center: citymap[city].center,
-        radius: citymap[city].population / 20
+        center: citymap['chicago'].center,
+        radius: citymap['chicago'].population / 20
       };
-      cityCircle = new google.maps.Circle(populationOptions);
-    }
+     var cityCircle = new google.maps.Circle(populationOptions);
+  
+    
+    google.maps.event.addListener(cityCircle, 'click', function() {
+   alert('it works');
+  });
   }
 </script>
 </head>
