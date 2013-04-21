@@ -7,7 +7,12 @@
 <link href="default.css" rel="stylesheet">
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script>
-
+ function open_chart_popup() {
+     var thisIsAnObject = {foo:'bar'};
+var w = window.open("http://example.com");
+w.myVariable = thisIsAnObject;
+        window.open('highchart.html', 'chart popup title', 'width=600px height=400px');
+    }
   var citymap = {};
   citymap['chicago'] = {
     center: new google.maps.LatLng(41.878113, -87.629798),
@@ -41,9 +46,9 @@
      var cityCircle = new google.maps.Circle(populationOptions);
   
     
-    google.maps.event.addListener(cityCircle, 'click', function() {
-   alert('it works');
-  });
+    google.maps.event.addListener(cityCircle, 'click',function open_chart_popup() {
+        window.open('highchart.html', 'chart popup title', 'width=600px height=400px');
+    });
   }
 </script>
 </head>
