@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,37 +82,25 @@ public class STOutliers extends HttpServlet {
                 year2=Integer.parseInt(request.getParameter("year2"));
                 month2=request.getParameter("month2");
                 String region=request.getParameter("region");                
+        SpatioTempOutliers st2=new SpatioTempOutliers(year1,year2,month1,month2,region);
+        HashSet hs=st2.getAllspTempOutliers();
+        ArrayList<String> lists = new ArrayList<String>(hs);
         
-                
-                    
-        RegionIdData rd=new RegionIdData();
-        String regionList=rd.getRegionSubList(region);
-        System.out.println("Region List String "+regionList);
-        String[] regionListArray=regionList.split(" ");
-        System.out.println(regionListArray[0]);
-  
-        ArrayList<ArrayList<String>> stanomalies=new ArrayList<ArrayList<String>>();
-    for(int i=0;i<regionListArray.length;i++)
-    {
-    SpTempOutliers sto = new SpTempOutliers(year1,year2,month1,month2,region);// input
-    stanomalies= sto.getAllspTempOutliers();// output
-    //iterate
-    }
-   
-    
-//             CoordinateData c1=new CoordinateData();
-//             for (Object key: anois_sum.keySet()) {
-//            ArrayList<String> list=new ArrayList<String>();
-//             list=c1.getLongLat(new Long(key.toString()));
-//             list.add(new Float(anois_sum.get(key).toString())+"");
-//             list.add(key.toString());
-//             results.add(list);
-//              }
+        ArrayList<ArrayList<String>> results= new ArrayList<ArrayList<String>>();
+         CoordinateData c1=new CoordinateData();
+             for (int i=0;i<lists.size();i++) {
+           ArrayList<String> list=new ArrayList<String>();
+             list=c1.getLongLat(new Long(lists.get(i)));
+             list.add("450000");
+             results.add(list);
+             System.out.println(list);
+              }
              
-                request.setAttribute("result",stanomalies);   
+                request.setAttribute("result",results);   
                 RequestDispatcher dispatcher=request.getRequestDispatcher("OutlierVisualisation.jsp");
                 dispatcher.forward(request,response);
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex) {
             Logger.getLogger(STOutliers.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
