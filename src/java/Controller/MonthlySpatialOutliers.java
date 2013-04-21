@@ -95,7 +95,7 @@ smallList.add("8");
             Map anois=o1.getAnois();
             CoordinateData c1=new CoordinateData();
              for (Object key: anois.keySet()) {
-            ArrayList<String> list=new ArrayList<String>();
+           ArrayList<String> list=new ArrayList<String>();
              list=c1.getLongLat(new Long(key.toString()));
              list.add(anois.get(key).toString());
              list.add(key.toString());
