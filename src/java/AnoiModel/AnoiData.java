@@ -27,6 +27,7 @@ public class AnoiData {
     st=(Statement)connector.returnStatement();
     }
     
+    
     public Map getAnoiValue(String RegionId,String Month) throws SQLException
     { Map anoiResult = new HashMap();
      String query="SELECT "+databaseTable+".id,"+Month+" FROM `"+databaseTable+"` WHERE RegionId="+RegionId;   
@@ -93,8 +94,18 @@ public class AnoiData {
              {
                  anoiValue=rs.getDouble(month);
              }
-            return anoiValue;     
-   
+            return anoiValue;   
     }
+
+    public double getAnoiData(String id, String month) throws SQLException {
+        double anoiValue = 0;
+        String query="SELECT "+month + " FROM "+this.databaseTable+" WHERE id ="+id;  
+             ResultSet rs=st.executeQuery(query);
+             while(rs.next())
+             {
+                 anoiValue=rs.getDouble(month);
+             }
+            return anoiValue;   
+         }
       
     }
