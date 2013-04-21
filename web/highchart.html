@@ -15,28 +15,19 @@
 		
 		<!-- 2. Add the JavaScript to initialize the chart on document ready -->
 		<script type="text/javascript">
-                    function createPopup(){
-var popup = open("", "Popup", "width=600,height=400");
-var txtOk = popup.document.createElement("div");
-txtOk.div.id = makeDivId("container");
-var aOk = popup.document.createElement("a");
-aOk.innerHTML = "Click here";
-
-popup.document.body.appendChild(txtOk);
-popup.document.body.appendChild(aOk);
-}
-                    
-                    
-		var chart;
-		$(document).ready(function() {
+                var i=document.URL+" ";
+                var id=i.split("=");
+                 var params=id[1]+"";
+                 var id=params.replace('.','').replace('.','').replace('b','');
+                $(document).ready(function() {
 			chart = new Highcharts.Chart({
 				chart: {
-					
+					renderTo : 'container',
 					defaultSeriesType: 'line',
 					margin: [50, 150, 60, 80]
 				},
 				title: {
-					text: 'Monthly Average Temperature',
+					text:id,
 					style: {
 						margin: '10px 100px 0 0' // center it
 					}
@@ -87,16 +78,10 @@ popup.document.body.appendChild(aOk);
 			
 			
 		});
-                
-                
 		</script>
 		
 	</head>
 	<body>
-		<div id="divPopup" onclick="createPopup();">Create popup</div>
-		<!-- 3. Add the container -->
-		<div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
-		
-				
-	</body>
+            <div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
+               </body>
 </html>
