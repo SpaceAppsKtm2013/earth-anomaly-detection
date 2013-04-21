@@ -14,13 +14,16 @@ Author     : paradise lost
     <title>Anomaly detection </title>
 <link href="default.css" rel="stylesheet">
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
 <% 
 ArrayList<ArrayList<String>> finalResult=(ArrayList<ArrayList<String>>)request.getAttribute("result");
  System.out.println(finalResult);
 String centralX=finalResult.get(0).get(0);
 String centralY=finalResult.get(0).get(1);
 %>
-<script type="text/javascript" > // Create an object containing LatLng, population.
+<script type="text/javascript" > 
+    
+    // Create an object containing LatLng, population.
 var citymap = {};
 var value1=
 <% int iter=0; 
@@ -32,6 +35,7 @@ citymap['chica<%=iter%>'] = {
     id: '121'
 };
 <%}%>
+
 var cityCircle={};
 
 function initialize() {
@@ -51,11 +55,11 @@ for (var city in citymap) {
     strokeOpacity: 0.3,
     strokeWeight: 1,
     fillColor: "#FF0000",
-    fillOpacity: 0.3,
+    fillOpacity: 0.4,
     map: map,
     center: citymap[city].center,
     id : 123,
-    radius: citymap[city].population/40
+    radius: citymap[city].population/35
   };
    cityCircle = new google.maps.Circle(populationOptions);
    var radius = cityCircle.getRadius();

@@ -10,11 +10,11 @@ public final class OutlierVisualisationInitialiser_jsp extends org.apache.jasper
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
-  private static java.util.Vector _jspx_dependants;
+  private static java.util.List<String> _jspx_dependants;
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
-  public Object getDependants() {
+  public java.util.List<String> getDependants() {
     return _jspx_dependants;
   }
 
