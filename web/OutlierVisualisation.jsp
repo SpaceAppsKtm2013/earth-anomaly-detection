@@ -22,15 +22,17 @@ String centralY=finalResult.get(0).get(1);
 %>
 <script type="text/javascript" > // Create an object containing LatLng, population.
 var citymap = {};
+var value1=
 <% int iter=0; 
 for(ArrayList<String> inneResult:finalResult)
 {iter++; %> 
 citymap['chica<%=iter%>'] = {
     center: new google.maps.LatLng(<%=inneResult.get(0) %>,<%=inneResult.get(1) %>),
-    population: <%=inneResult.get(2) %>
+    population: <%=inneResult.get(2)%>,
+    id: '121'
 };
 <%}%>
-var cityCircle;
+var cityCircle={};
 
 function initialize() {
 var mapOptions = {
@@ -41,7 +43,7 @@ var mapOptions = {
 
 var map = new google.maps.Map(document.getElementById("map_canvas"),
     mapOptions);
-
+var i=0;
 for (var city in citymap) {
   // Construct the circle for each value in citymap. We scale population by 20.
   var populationOptions = {
@@ -52,9 +54,16 @@ for (var city in citymap) {
     fillOpacity: 0.3,
     map: map,
     center: citymap[city].center,
+    id : 123,
     radius: citymap[city].population/40
   };
-  cityCircle = new google.maps.Circle(populationOptions);
+   cityCircle = new google.maps.Circle(populationOptions);
+   var radius = cityCircle.getRadius();
+   var latt = cityCircle.getCenter().lat();
+   var longg = cityCircle.getCenter().lng();
+   google.maps.event.addListener(cityCircle, 'click',function open_chart_popup() {
+   window.open('highchart.html?id='+latt+'b'+longg,'chart popup title', 'width=600px height=400px');   
+    });
 }
 } </script></head>
 <body onload="initialize()">
